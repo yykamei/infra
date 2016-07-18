@@ -1,5 +1,5 @@
-# frozen_string_literal: true
 # -*- coding: utf-8 -*-
+# frozen_string_literal: true
 # vi: set ft=ruby :
 
 Vagrant.configure('2') do |config|
