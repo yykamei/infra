@@ -1,0 +1,19 @@
+[global]
+access control = no
+auth file = /etc/ppp/chap-secrets
+debug avp = no
+debug network = no
+debug packet = no
+debug state = no
+debug tunnel = no
+
+[lac {{ vpn_name }}]
+lns = {{ vpn_server_ip }}
+require chap = yes
+require authentication = yes
+ppp debug = yes
+pppoptfile = /etc/ppp/options.l2tpd.{{ vpn_name }}
+length bit = yes
+redial = yes
+redial timeout = 10
+max redials = 3

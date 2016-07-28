@@ -1,0 +1,16 @@
+ipcp-accept-local
+ipcp-accept-remote
+require-chap
+refuse-eap
+refuse-pap
+noccp
+noauth
+idle 1800
+mtu 1410
+mru 1410
+defaultroute
+usepeerdns
+debug
+connect-delay 5000
+name {{ vpn_user_name }}
+password {{ vpn_user_password }}

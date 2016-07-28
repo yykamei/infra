@@ -1,3 +1,5 @@
 ---
 - include: hypervisor.yml
   when: ansible_os_family == 'Archlinux'
+- include: vpn.yml
+  when: ansible_os_family == 'Archlinux'

@@ -1,0 +1,38 @@
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+    - secrets.yml
+  roles:
+    - role: sysctl
+      tags:
+        - sysctl
+    - role: openswan
+      tags:
+        - openswan
+    - role: xl2tpd
+      tags:
+        - xl2tpd
+
+  post_tasks:
+    - name: Start openswan
+      shell: |
+        systemctl restart "{{ item }}"
+      with_items:
+        - openswan.service
+        - xl2tpd.service
+      become: yes
+
+
+    - name: Up {{ vpn_name }}
+      shell: |
+        ipsec auto --up {{ vpn_name }}
+      become: yes
+
+
+    - name: Connect L2TP
+      shell: |
+        echo "c {{ vpn_name }}" > /var/run/xl2tpd/l2tp-control
+      become: yes
+
+    # FIXME: routing

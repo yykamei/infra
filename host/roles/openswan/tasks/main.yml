@@ -1,0 +1,58 @@
+---
+- name: Check openswan installed or not
+  shell: |
+    pacman -Q openswan || echo -n not_found
+  register: openswan_result
+
+
+- name: Download openswan AUR snapshot
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/openswan.tar.gz
+    dest: /tmp/openswan.tar.gz
+  when: openswan_result.stdout == "not_found"
+
+
+- name: Unarchive openswan.tar.gz
+  unarchive:
+    src: /tmp/openswan.tar.gz
+    dest: /tmp
+    copy: no
+  when: openswan_result.stdout == "not_found"
+
+
+- name: Build openswan
+  shell: |
+    makepkg -s && touch /tmp/openswan/.built
+  args:
+    chdir: /tmp/openswan
+    creates: /tmp/openswan/.built
+  when: openswan_result.stdout == "not_found"
+
+
+- name: Install openswan
+  shell: |
+    pacman -U --noconfirm /tmp/openswan/openswan-*.pkg.tar.xz
+  become: yes
+  when: openswan_result.stdout == "not_found"
+
+
+- name: Start openswan
+  shell: |
+    systemctl start openswan.service
+  become: yes
+
+
+- name: Deploy ipsec.conf
+  template:
+    src: ipsec.conf.j2
+    dest: /etc/ipsec.conf
+    backup: yes
+  become: yes
+
+
+- name: Insert Pre shared key
+  lineinfile:
+    dest: /etc/ipsec.secrets
+    line: "%any {{ vpn_server_ip }} : PSK \"{{ vpn_psk }}\""
+    backup: yes
+  become: yes

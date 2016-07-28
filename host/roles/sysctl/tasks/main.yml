@@ -1,0 +1,26 @@
+---
+- name: Set sysctl
+  sysctl:
+    name: "{{ item.key }}"
+    value: "{{ item.value }}"
+    sysctl_file: /etc/sysctl.d/{{ ansible_hostname }}.conf
+  with_items:
+    - key: "net.ipv4.ip_forward"
+      value: "1"
+    - key: "net.ipv4.conf.all.send_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.all.accept_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.default.send_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.default.accept_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.eth0.send_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.eth0.accept_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.lo.send_redirects"
+      value: "0"
+    - key: "net.ipv4.conf.lo.accept_redirects"
+      value: "0"
+  become: yes
