@@ -1,0 +1,3 @@
+---
+- include: hypervisor.yml
+  when: ansible_os_family == 'Archlinux'

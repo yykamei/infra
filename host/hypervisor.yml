@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  roles:
+    - role: libvirt
+      tags:
+        - libvirt
+  vars:
+    libvirt_group: libvirt
+    libvirt_users:
+      - kamei

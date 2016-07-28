@@ -1,0 +1,31 @@
+- name: Install libvirt
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libvirt
+    - dnsmasq
+    - ebtables
+    - dmidecode
+  become: yes
+  notify:
+    - libvirt_restart
+
+
+- name: Set libvirtd.conf
+  template:
+    src: libvirtd.conf.j2
+    dest: /etc/libvirt/libvirtd.conf
+    backup: yes
+  become: yes
+  notify:
+    - libvirt_restart
+
+
+- name: Add users into libvirt group
+  user:
+    append: yes
+    name: "{{ item }}"
+    groups: "{{ libvirt_group }}"
+  with_items: "{{ libvirt_users }}"
+  become: yes

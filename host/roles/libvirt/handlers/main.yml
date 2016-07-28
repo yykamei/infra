@@ -1,0 +1,16 @@
+# NOTE
+#
+# service module in Arch Linux does not work.
+# See https://github.com/ansible/ansible-modules-core/issues/3868
+#
+# - name: libvirt_restart
+#   service:
+#     name: libvirtd.service
+#     state: restarted
+#     enabled: no
+#   become: yes
+
+- name: libvirt_restart
+  shell: |
+    systemctl restart libvirtd.service
+  become: yes
