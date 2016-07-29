@@ -2,7 +2,7 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - secrets.yml
+    - .secrets.yml
   roles:
     - role: sysctl
       tags:
