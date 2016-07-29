@@ -1,0 +1,4 @@
+---
+- name: docker_restart
+  shell: |
+    systemctl restart docker.service

@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  roles:
+    - role: docker
+      tags:
+        - docker
+  vars:
+    docker_group: docker
+    docker_users:
+      - kamei
+
