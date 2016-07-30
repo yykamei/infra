@@ -28,6 +28,7 @@
         - git
         - tmux
         - jq
+        - ctags
         - nmap
         - pkgfile
         - bind-tools
