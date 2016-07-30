@@ -1,0 +1,11 @@
+---
+- name: Install Python
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python
+    - python-pip
+    - python2
+    - python2-virtualenv
+  become: yes

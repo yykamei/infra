@@ -12,3 +12,4 @@
 
 
 - include: dev-tool.yml
+  when: ansible_os_family == 'Archlinux'
