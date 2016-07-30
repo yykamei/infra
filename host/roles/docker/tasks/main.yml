@@ -1,8 +1,11 @@
 ---
 - name: Install docker
   pacman:
-    name: docker
+    name: "{{ item }}"
     state: latest
+  with_items:
+    - docker
+    - docker-compose
   become: yes
   notify:
     - docker_restart
