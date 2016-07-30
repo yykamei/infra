@@ -1,0 +1,37 @@
+---
+# NOTE: You must set PATH environment variable (PATH=$HOME/.rbenv/bin:$PATH)
+
+- name: Clone rbenv repository
+  git:
+    dest: "{{ ansible_env.HOME }}/.rbenv"
+    repo: https://github.com/rbenv/rbenv.git
+    clone: yes
+    update: yes
+
+
+- name: Clone ruby-build repository
+  git:
+    dest: "{{ ansible_env.HOME }}/.rbenv/plugins/ruby-build"
+    repo: https://github.com/sstephenson/ruby-build.git
+    clone: yes
+    update: yes
+
+
+- name: Install Ruby
+  shell: |
+    rbenv versions | grep -F "{{ ruby_version }}" || rbenv install "{{ ruby_version }}"
+
+
+- name: Set global rbenv version
+  shell: |
+    rbenv global "{{ ruby_version }}"
+
+
+- name: Install Development tools
+  gem:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - bundler
+    - rubocop
+    - refe2
