@@ -13,26 +13,6 @@
         - wpa_actiond
         - dialog
 
-        # Accessing remote server
-        - openssh
-        - rsync
-        - remmina
-        - libvncserver
-        - freerdp
-        - sshfs
-        - wget
-
-        # Development tools
-        - vim
-        - zsh
-        - git
-        - tmux
-        - jq
-        - ctags
-        - nmap
-        - pkgfile
-        - bind-tools
-
         # Window manager or X relevant tools
         - i3
         - xorg-server
@@ -57,6 +37,43 @@
         - ttf-droid
         - ttf-hanazono
 
+        # Accessing remote server
+        - openssh
+        - rsync
+        - remmina
+        - libvncserver
+        - freerdp
+        - wget
+
+        # Mount tools
+        - sshfs
+        - cifs-utils
+        - autofs
+
+        # Development tools
+        - vim
+        - zsh
+        - git
+        - tmux
+        - jq
+        - ctags
+        - nmap
+        - pkgfile
+        - bind-tools
+        - strace
+        - ltrace
+
+        # System monitoring tools
+        - lsof
+        - dstat
+        - wireshark-cli
+        - lshw
+
         # Web browser
         - chromium
         - firefox
+
+        # E-mail
+        # - msmtp
+        # - getmail
+        # - procmail
