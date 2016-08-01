@@ -73,6 +73,10 @@
         - chromium
         - firefox
 
+        # Other utilities
+        - cdrtools
+        - abcde
+
         # E-mail
         # - msmtp
         # - getmail
