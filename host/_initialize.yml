@@ -12,6 +12,7 @@
         - wpa_supplicant
         - wpa_actiond
         - dialog
+        - wol
 
         # Window manager or X relevant tools
         - i3
