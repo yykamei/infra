@@ -19,12 +19,12 @@
 
 - name: Install Ruby
   shell: |
-    rbenv versions | grep -F "{{ ruby_version }}" || rbenv install "{{ ruby_version }}"
+    rbenv versions | grep -F "{{ rbenv_ruby_version }}" || rbenv install "{{ rbenv_ruby_version }}"
 
 
 - name: Set global rbenv version
   shell: |
-    rbenv global "{{ ruby_version }}"
+    rbenv global "{{ rbenv_ruby_version }}"
 
 
 - name: Install Development tools
