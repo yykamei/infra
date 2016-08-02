@@ -38,6 +38,10 @@
         - ttf-droid
         - ttf-hanazono
 
+        # Sound
+        - pulseaudio
+        - pavucontrol
+
         # Accessing remote server
         - openssh
         - rsync
