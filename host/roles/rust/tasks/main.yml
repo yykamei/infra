@@ -1,0 +1,23 @@
+---
+- name: Install Rust
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - rust
+    - cargo
+  become: yes
+
+
+- name: Install rusty-tags
+  shell: |
+    cargo install rusty-tags
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rusty-tags"
+
+
+- name: Install rustfmt
+  shell: |
+    cargo install rustfmt
+  args:
+    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustfmt"

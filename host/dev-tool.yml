@@ -10,5 +10,9 @@
       tags:
         - python
         - development
+    - role: rust
+      tags:
+        - rust
+        - development
   vars:
     - rbenv_ruby_version: "2.3.1"
