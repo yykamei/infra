@@ -1,0 +1,43 @@
+---
+- name: Install OpenLDAP
+  pacman:
+    name: openldap
+    state: latest
+  become: yes
+
+
+- name: Check ldapvi installed or not
+  shell: |
+    pacman -Q ldapvi || echo -n not_found
+  register: ldapvi_result
+
+
+- name: Download ldapvi AUR snapshot
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/ldapvi.tar.gz
+    dest: /tmp/ldapvi.tar.gz
+  when: ldapvi_result.stdout == "not_found"
+
+
+- name: Unarchive ldapvi.tar.gz
+  unarchive:
+    src: /tmp/ldapvi.tar.gz
+    dest: /tmp
+    copy: no
+  when: ldapvi_result.stdout == "not_found"
+
+
+- name: Build ldapvi
+  shell: |
+    makepkg -s && touch /tmp/ldapvi/.built
+  args:
+    chdir: /tmp/ldapvi
+    creates: /tmp/ldapvi/.built
+  when: ldapvi_result.stdout == "not_found"
+
+
+- name: Install ldapvi
+  shell: |
+    pacman -U --noconfirm /tmp/ldapvi/ldapvi-*.pkg.tar.xz
+  become: yes
+  when: ldapvi_result.stdout == "not_found"
