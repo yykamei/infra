@@ -1,4 +1,6 @@
 ---
 - name: docker_restart
-  shell: |
-    systemctl restart docker.service
+  service:
+    name: docker.service
+    state: restarted
+  become: yes

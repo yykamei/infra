@@ -16,8 +16,9 @@
 
   post_tasks:
     - name: Start openswan
-      shell: |
-        systemctl restart "{{ item }}"
+      service:
+        name: "{{ item }}"
+        state: restarted
       with_items:
         - openswan.service
         - xl2tpd.service

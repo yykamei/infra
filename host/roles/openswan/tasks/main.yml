@@ -37,8 +37,9 @@
 
 
 - name: Start openswan
-  shell: |
-    systemctl start openswan.service
+  service:
+    name: openswan.service
+    state: started
   become: yes
 
 
