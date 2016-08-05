@@ -1,0 +1,10 @@
+---
+- name: Install Node.js
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - nodejs
+    - npm
+  become: yes
+

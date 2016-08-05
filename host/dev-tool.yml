@@ -2,6 +2,10 @@
 - hosts: localhost
   connection: local
   roles:
+    - role: rust
+      tags:
+        - rust
+        - development
     - role: ruby
       tags:
         - ruby
@@ -10,9 +14,9 @@
       tags:
         - python
         - development
-    - role: rust
+    - role: javascript
       tags:
-        - rust
+        - javascript
         - development
   vars:
     - rbenv_ruby_version: "2.3.1"
