@@ -24,6 +24,7 @@
         - xorg-xmodmap
         - xorg-xrandr
         - xf86-input-synaptics
+        - xf86-video-intel
         - xclip
         - xsel
         - xautolock
