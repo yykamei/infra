@@ -36,8 +36,8 @@
         # Fonts
         - ttf-dejavu
         - ttf-inconsolata
-        - ttf-droid
-        - ttf-hanazono
+        - noto-fonts
+        - noto-fonts-cjk
 
         # Sound
         - pulseaudio
