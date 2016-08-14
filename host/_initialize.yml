@@ -23,6 +23,8 @@
         - xorg-setxkbmap
         - xorg-xmodmap
         - xorg-xrandr
+        - xorg-xinput
+        - xorg-xev
         - xf86-input-synaptics
         - xf86-video-intel
         - xclip
