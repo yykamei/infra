@@ -44,6 +44,8 @@
         # Sound
         - pulseaudio
         - pavucontrol
+        - rhythmbox
+        - easytag
 
         # Accessing remote server
         - openssh
