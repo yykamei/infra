@@ -41,11 +41,12 @@
         - noto-fonts
         - noto-fonts-cjk
 
-        # Sound
+        # Sound/Video
         - pulseaudio
         - pavucontrol
-        - rhythmbox
         - easytag
+        - rhythmbox
+        - vlc
 
         # Accessing remote server
         - openssh
