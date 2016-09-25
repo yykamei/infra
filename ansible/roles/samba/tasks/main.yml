@@ -88,6 +88,7 @@
       dest: /etc/systemd/system/smbd.service
   notify:
     - restart_samba
+  become: yes
 
 
 - name: Reload systemd daemons
@@ -104,3 +105,4 @@
   with_items:
     - nmbd.service
     - smbd.service
+  become: yes

@@ -7,3 +7,4 @@
   with_items:
     - nmbd.service
     - smbd.service
+  become: yes
