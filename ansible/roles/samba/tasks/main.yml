@@ -1,0 +1,109 @@
+---
+
+- name: Create /share directory
+  file:
+    path: "{{ item.path }}"
+    mode: "{{ item.mode | default('0755') }}"
+    owner: "{{ default(nas.private_user) }}"
+    group: "{{ default('user') }}"
+    state: directory
+  with_items:
+    - path: /share
+    - path: /share/Document
+    - path: /share/Music
+    - path: /share/Video
+    - path: /share/Picture
+    - path: /share/Private
+      mode: "0700"
+  become: yes
+
+
+- name: Clone samba repository
+  git:
+    dest: "{{ ansible_env.HOME }}/git/Fork/samba"
+    repo: git://git.samba.org/samba.git
+    clone: yes
+    update: yes
+
+
+- name: Clone samba repository
+  file:
+    path: "{{ ansible_env.HOME }}/git/Fork/samba/CONFIGURED"
+    state: absent
+  when: ansible_env.FORCE_BUILD == "TRUE"
+
+
+- name: Configure
+  shell: |
+    export PYTHON=/usr/bin/python2 && \
+    make distclean && \
+    ./configure --prefix=/opt/samba \
+                --without-winbind \
+                --without-ads \
+                --without-ldap \
+                --without-quotas \
+                --without-dnsupdate \
+                --without-automount \
+                --without-dmapi \
+                --disable-cups \
+                --disable-iprint \
+                --disable-avahi \
+                --without-ad-dc \
+                --with-pam \
+                --with-sendfile-support \
+                --with-utmp \
+                --with-iconv \
+                --with-acl-support \
+                --with-syslog \
+                --with-libarchive \
+                --with-systemd \
+                --enable-pthreadpool;
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
+    creates: "{{ ansible_env.HOME }}/git/Fork/samba/CONFIGURED"
+
+
+- name: build
+  shell: |
+    env PYTHON=/usr/bin/python2 make
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
+
+
+- name: install
+  shell: |
+    env PYTHON=/usr/bin/python2 make install
+  args:
+    chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
+  become: yes
+
+
+- name: Copy files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: smb.conf.j2
+      dest: /opt/samba/etc/smb.conf
+    - src: nmbd.service.j2
+      dest: /etc/systemd/system/nmbd.service
+    - src: smbd.service.j2
+      dest: /etc/systemd/system/smbd.service
+  notify:
+    - restart_samba
+
+
+- name: Reload systemd daemons
+  shell: |
+    systemctl daemon-reload
+  become: yes
+
+
+- name: Start samba
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  with_items:
+    - nmbd.service
+    - smbd.service

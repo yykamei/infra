@@ -1,0 +1,11 @@
+[Unit]
+Description=Samba NetBIOS name server for {{ ansible_hostname }}
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/samba/sbin/nmbd -F
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

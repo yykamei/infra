@@ -1,0 +1,51 @@
+[global]
+	workgroup = WORKGROUP
+	server role = standalone
+	netbios name = {{ ansible_hostname }}
+	logging = systemd
+
+	wins support = no
+	interfaces = 127.0.0.1 {{ nas.interface }}
+	bind interfaces only  = yes
+	map to guest = bad user
+
+[Private]
+	path = /share/Private
+	browseable = no
+	read only = no
+	valid users = {{ nas.private_user }}
+	create mask = 0600
+	directory mask = 0700
+
+[Music]
+	path = /share/Music
+	browseable = yes
+	read only = no
+	guest ok = yes
+	create mask = 0644
+	directory mask = 0755
+
+[Picture]
+	path = /share/Picture
+	browseable = yes
+	read only = no
+	guest ok = yes
+	create mask = 0644
+	directory mask = 0755
+
+[Video]
+	path = /share/Video
+	browseable = yes
+	read only = no
+	guest ok = yes
+	create mask = 0644
+	directory mask = 0755
+
+[Document]
+	path = /share/Document
+	browseable = yes
+	read only = no
+	create mask = 0644
+	directory mask = 0755
+
+# vi: set filetype=samba :

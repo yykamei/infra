@@ -1,0 +1,11 @@
+[Unit]
+Description=Samba SMB/CIFS server instance for {{ ansible_hostname }}
+After=network.target nmbd.service
+
+[Service]
+Type=simple
+ExecStart=/opt/samba/sbin/smbd -F
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
