@@ -1,4 +1,16 @@
 ---
+- include: _initialize.yml
+  when: ansible_os_family == 'Archlinux'
+
+
+- include: dev-tool.yml
+  when: ansible_os_family == 'Archlinux'
+
+
+- include: ldap-client.yml
+  when: ansible_os_family == 'Archlinux'
+
+
 - include: hypervisor.yml
   when: ansible_os_family == 'Archlinux'
 
@@ -8,10 +20,6 @@
 
 
 - include: vpn.yml
-  when: ansible_os_family == 'Archlinux'
-
-
-- include: dev-tool.yml
   when: ansible_os_family == 'Archlinux'
 
 

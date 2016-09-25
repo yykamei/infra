@@ -4,8 +4,8 @@
   file:
     path: "{{ item.path }}"
     mode: "{{ item.mode | default('0755') }}"
-    owner: "{{ default(nas.private_user) }}"
-    group: "{{ default('user') }}"
+    owner: "{{ nas.private_user }}"
+    group: "users"
     state: directory
   with_items:
     - path: /share
@@ -30,7 +30,7 @@
   file:
     path: "{{ ansible_env.HOME }}/git/Fork/samba/CONFIGURED"
     state: absent
-  when: ansible_env.FORCE_BUILD == "TRUE"
+  when: ansible_env.get('FORCE_BUILD') == 'TRUE'
 
 
 - name: Configure
@@ -57,7 +57,8 @@
                 --with-syslog \
                 --with-libarchive \
                 --with-systemd \
-                --enable-pthreadpool;
+                --enable-pthreadpool && \
+    touch CONFIGURED
   args:
     chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
     creates: "{{ ansible_env.HOME }}/git/Fork/samba/CONFIGURED"
@@ -65,16 +66,12 @@
 
 - name: build
   shell: |
-    env PYTHON=/usr/bin/python2 make
-  args:
-    chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
+    env PYTHON=/usr/bin/python2 make -C {{ ansible_env.HOME }}/git/Fork/samba
 
 
 - name: install
   shell: |
-    env PYTHON=/usr/bin/python2 make install
-  args:
-    chdir: "{{ ansible_env.HOME }}/git/Fork/samba"
+    env PYTHON=/usr/bin/python2 make -C {{ ansible_env.HOME }}/git/Fork/samba install
   become: yes
 
 
