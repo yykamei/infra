@@ -8,6 +8,7 @@
 	interfaces = 127.0.0.1 {{ nas.interface }}
 	bind interfaces only  = yes
 	map to guest = bad user
+	ntlm auth = yes
 
 [Private]
 	path = /share/Private
