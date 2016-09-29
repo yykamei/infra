@@ -1,0 +1,29 @@
+---
+
+# Always update unarchiver
+
+- name: Download unarchiver AUR snapshot
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/unarchiver.tar.gz
+    dest: /tmp/unarchiver.tar.gz
+
+
+- name: Unarchive unarchiver.tar.gz
+  unarchive:
+    src: /tmp/unarchiver.tar.gz
+    dest: /tmp
+    copy: no
+
+
+- name: Build unarchiver
+  shell: |
+    makepkg -s --noconfirm && touch /tmp/unarchiver/.built
+  args:
+    chdir: /tmp/unarchiver/
+    creates: /tmp/unarchiver/.built
+
+
+- name: Install unarchiver
+  shell: |
+    pacman -U --noconfirm /tmp/unarchiver/unarchiver-*.pkg.tar.xz
+  become: yes

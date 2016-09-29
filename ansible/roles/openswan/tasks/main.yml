@@ -22,7 +22,7 @@
 
 - name: Build openswan
   shell: |
-    makepkg -s && touch /tmp/openswan/.built
+    makepkg -s --noconfirm && touch /tmp/openswan/.built
   args:
     chdir: /tmp/openswan
     creates: /tmp/openswan/.built

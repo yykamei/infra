@@ -29,7 +29,7 @@
 
 - name: Build ldapvi
   shell: |
-    makepkg -s && touch /tmp/ldapvi/.built
+    makepkg -s --noconfirm && touch /tmp/ldapvi/.built
   args:
     chdir: /tmp/ldapvi
     creates: /tmp/ldapvi/.built
