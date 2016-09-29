@@ -30,6 +30,7 @@
         - xclip
         - xsel
         - xautolock
+        - fcitx-im
         - fcitx-mozc
         - fcitx-configtool
         - xfce4-terminal

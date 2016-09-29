@@ -8,4 +8,15 @@
     - python-pip
     - python2
     - python2-virtualenv
+    - python-numpy
+    - python-pandas
+    - python-scipy
+    - python-statsmodels
+    - python-matplotlib
+    - python-seaborn
   become: yes
+
+# flake8
+# click
+# ipython
+# awscli
