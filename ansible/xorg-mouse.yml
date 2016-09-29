@@ -2,6 +2,6 @@
 - hosts: localhost
   connection: local
   roles:
-    - role: synaptics
+    - role: xorg-mouse
       tags:
-        synaptics
+        xorg-mouse

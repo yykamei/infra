@@ -3,7 +3,7 @@
   when: ansible_os_family == 'Archlinux'
 
 
-- include: synaptics.yml
+- include: xorg-mouse.yml
   when: ansible_os_family == 'Archlinux'
 
 
