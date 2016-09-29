@@ -4,7 +4,7 @@
   roles:
     - role: libvirt
       tags:
-        - libvirt
+        - hypervisor
   vars:
     libvirt_group: libvirt
     libvirt_users:
