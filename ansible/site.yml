@@ -23,8 +23,5 @@
   when: ansible_os_family == 'Archlinux'
 
 
-- include: fingerprint-reader.yml
-  when: ansible_os_family == 'Archlinux' and 'x1-carbon' in ansible_hostname
-
 - include: nas.yml
   when: ansible_os_family == 'Archlinux'
