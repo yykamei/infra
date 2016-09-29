@@ -3,6 +3,10 @@
   when: ansible_os_family == 'Archlinux'
 
 
+- include: synaptics.yml
+  when: ansible_os_family == 'Archlinux'
+
+
 - include: dev-tool.yml
   when: ansible_os_family == 'Archlinux'
 
