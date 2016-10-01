@@ -19,3 +19,10 @@
   with_items: "{{ docker_users }}"
   become: yes
 
+
+- name: Enable and start docker engine
+  service:
+    name: docker.service
+    state: started
+    enbaled: yes
+  become: yes
