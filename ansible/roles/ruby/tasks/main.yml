@@ -32,6 +32,7 @@
     name: "{{ item }}"
     state: latest
     executable: "{{ ansible_env.HOME }}/.rbenv/shims/gem"
+    user_install: no
   with_items:
     - bundler
     - rubocop
