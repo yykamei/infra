@@ -43,6 +43,7 @@
         - noto-fonts-cjk
 
         # Sound/Video
+        - alsa-utils
         - pulseaudio
         - pavucontrol
         - easytag
