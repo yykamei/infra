@@ -6,6 +6,10 @@
       tags:
         - rust
         - development
+    - role: go
+      tags:
+        - go
+        - development
     - role: ruby
       tags:
         - ruby

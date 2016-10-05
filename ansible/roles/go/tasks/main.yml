@@ -1,0 +1,14 @@
+---
+- name: Install Go
+  pacman:
+    name: go
+    state: latest
+  become: yes
+
+
+- name: Create go directory in HOME
+  file:
+    path: "{{ ansible_env.HOME }}/go"
+    state: directory
+
+# Run GoInstallBinaries in vim
