@@ -33,11 +33,11 @@
 
     - name: Connect L2TP
       shell: |
+        mkdir -p /var/run/xl2tpd && \
         echo "c {{ vpn_name }}" > /var/run/xl2tpd/l2tp-control
       become: yes
 
     # FIXME: ppp0
-
 
     - name: Wait for interface
       shell: |
@@ -46,6 +46,8 @@
 
     - name: Set routing
       shell: |
-        ip route show | grep -qF "{{ item }}" || ip route add "{{ item }}" dev ppp0
-      with_items: "{{ vpn_target_ips }}"
+        current_gateway=`ip route show | grep default | awk '{print $3}'` && \
+        ip route add "{{ vpn_server_ip }}" via ${current_gateway} && \
+        ip route delete default via ${current_gateway} && \
+        ip route add default dev ppp0
       become: yes
