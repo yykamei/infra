@@ -22,5 +22,10 @@
       tags:
         - javascript
         - development
+    - role: gcloud
+      tags:
+        - gcloud
+        - development
   vars:
-    - rbenv_ruby_version: "2.3.1"
+    - rbenv_ruby_version: '2.3.1'
+    - gcloud_version: '129.0.0'

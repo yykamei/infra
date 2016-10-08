@@ -1,0 +1,11 @@
+---
+- name: Get google-cloud-sdk
+  get_url:
+    url: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ gcloud_version }}-linux-x86.tar.gz
+    dest: /tmp/google-cloud-sdk.tar.gz
+
+
+- name: Unarchive
+  unarchive:
+    src: /tmp/google-cloud-sdk.tar.gz
+    dest: '{{ ansible_env.HOME }}'
