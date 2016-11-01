@@ -37,3 +37,5 @@
     - bundler
     - rubocop
     - refe2
+    - pry
+    - pry-theme
