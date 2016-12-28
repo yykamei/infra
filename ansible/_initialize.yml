@@ -35,6 +35,7 @@
         - fcitx-configtool
         - xfce4-terminal
         - dmenu
+        - libvdpau-va-gl
 
         # Fonts
         - ttf-dejavu

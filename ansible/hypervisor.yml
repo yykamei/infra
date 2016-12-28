@@ -6,6 +6,5 @@
       tags:
         - hypervisor
   vars:
-    libvirt_group: libvirt
     libvirt_users:
       - kamei

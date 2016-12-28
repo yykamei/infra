@@ -5,9 +5,12 @@
     state: latest
   with_items:
     - libvirt
+    - virt-install
+    - virt-manager
     - dnsmasq
     - ebtables
     - dmidecode
+    - qemu
   become: yes
   notify:
     - libvirt_restart
@@ -27,7 +30,16 @@
   user:
     append: yes
     name: "{{ item }}"
-    groups: "{{ libvirt_group }}"
+    groups: libvirt
+  with_items: "{{ libvirt_users }}"
+  become: yes
+
+
+- name: Add users into kvm group
+  user:
+    append: yes
+    name: "{{ item }}"
+    groups: kvm
   with_items: "{{ libvirt_users }}"
   become: yes
 
