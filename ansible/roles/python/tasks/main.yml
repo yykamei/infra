@@ -14,9 +14,9 @@
     - python-statsmodels
     - python-matplotlib
     - python-seaborn
+    - python-click
+    - ipython
+    - flake8
   become: yes
 
-# flake8
-# click
-# ipython
 # awscli
