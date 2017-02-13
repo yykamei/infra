@@ -46,13 +46,13 @@ conn {{ vpn_name }}
 		authby=secret
 		pfs=no
 		auto=add
-		keyingtries=3
+		keyingtries=5
 		dpddelay=30
 		dpdtimeout=120
-		dpdaction=clear
+		dpdaction=restart
 		rekey=yes
-		ikelifetime=8h
-		keylife=1h
+		ikelifetime=24h
+		keylife=24h
 		type=transport
 		# Left
 		left=%defaultroute
