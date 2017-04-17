@@ -1,10 +1,10 @@
 ---
-- name: Install Node.js
+- name: Install JavaScript relevant packages
   pacman:
     name: "{{ item }}"
     state: latest
   with_items:
     - nodejs
     - npm
+    - yarn
   become: yes
-
