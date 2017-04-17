@@ -1,23 +1,19 @@
 ---
 - name: Install Rust
-  pacman:
-    name: "{{ item }}"
-    state: latest
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/rustup-installer.sh
+    mode: 0700
+
+
+- name: Run rustup installer
+  shell: |
+    /tmp/rustup-installer.sh -y --default-toolchain stable
+
+
+- name: Install some commands
+  shell: |
+    cargo install {{ item }}
   with_items:
-    - rust
-    - cargo
-  become: yes
-
-
-- name: Install rusty-tags
-  shell: |
-    cargo install rusty-tags
-  args:
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/rusty-tags"
-
-
-- name: Install rustfmt
-  shell: |
-    cargo install rustfmt
-  args:
-    creates: "{{ ansible_env.HOME }}/.cargo/bin/rustfmt"
+    - rusty-tags
+    - rustfmt
