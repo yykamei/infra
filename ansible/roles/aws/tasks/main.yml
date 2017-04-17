@@ -1,0 +1,16 @@
+---
+- name: Install AWS CLI
+  pacman:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python
+    - aws-cli
+  become: yes
+
+
+- name: Install AWS EB CLI
+  pip:
+    name: awsebcli
+    state: latest
+    extra_args: --user
