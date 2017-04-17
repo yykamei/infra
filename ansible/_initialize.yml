@@ -25,6 +25,7 @@
         - xorg-xrandr
         - xorg-xinput
         - xorg-xev
+        - xorg-xbacklight
         - xf86-input-synaptics
         - xf86-video-intel
         - xclip
@@ -33,15 +34,16 @@
         - fcitx-im
         - fcitx-mozc
         - fcitx-configtool
-        - xfce4-terminal
         - dmenu
         - libvdpau-va-gl
 
         # Fonts
         - ttf-dejavu
         - ttf-inconsolata
+        - ttf-symbola
         - noto-fonts
         - noto-fonts-cjk
+        - noto-fonts-emoji
 
         # Sound/Video
         - alsa-utils
