@@ -43,7 +43,6 @@
         - ttf-symbola
         - noto-fonts
         - noto-fonts-cjk
-        - noto-fonts-emoji
 
         # Sound/Video
         - alsa-utils
