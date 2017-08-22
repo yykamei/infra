@@ -31,6 +31,7 @@
         - xclip
         - xsel
         - xautolock
+        - xdotool
         - fcitx-im
         - fcitx-mozc
         - fcitx-configtool
