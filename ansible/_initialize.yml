@@ -70,6 +70,7 @@
         - vim
         - zsh
         - git
+        - terminator
         - tmux
         - jq
         - ctags
