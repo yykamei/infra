@@ -1,19 +1,5 @@
 ---
 
-- name: Install synaptics
-  pacman:
-    name: xf86-input-synaptics
-    state: latest
-  become: yes
-
-
-- name: Deploy synaptics configuration file
-  copy:
-    src: 70-synaptics.conf
-    dest: /etc/X11/xorg.conf.d/70-synaptics.conf
-  become: yes
-
-
 - name: Deploy thinkpad configuration file
   copy:
     src: 20-thinkpad.conf
